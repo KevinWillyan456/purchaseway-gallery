@@ -1,4 +1,4 @@
-import { SlidersIcon, Trash2Icon } from 'lucide-react'
+import { PlusIcon, SlidersIcon, Trash2Icon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -180,8 +180,9 @@ function App() {
             <div className="flex flex-col sm:flex-row justify-between items-center p-4 space-y-2 sm:space-y-0 sm:space-x-2">
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-500 text-white p-2 rounded w-full sm:w-auto"
+                    className="bg-green-500 text-white p-2 rounded flex items-center w-full sm:w-auto justify-center"
                 >
+                    <PlusIcon size={16} className="mr-2" />
                     Adicionar Imagem
                 </button>
                 <button
