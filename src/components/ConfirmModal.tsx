@@ -25,25 +25,27 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
     return (
         <animated.div
             style={modalAnimation}
-            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50"
+            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 dark:bg-opacity-90"
             onClick={onClose}
         >
             <div
-                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200"
+                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
-                <h2 className="mb-4 text-xl font-bold">Confirmar Exclusão</h2>
-                <p className="mb-4">{message}</p>
+                <h2 className="mb-4 text-xl font-bold dark:text-white">
+                    Confirmar Exclusão
+                </h2>
+                <p className="mb-4 dark:text-white">{message}</p>
                 <div className="flex justify-end">
                     <button
                         onClick={onConfirm}
-                        className="mr-2 rounded bg-red-500 p-2 text-white"
+                        className="mr-2 rounded bg-red-500 p-2 text-white dark:bg-red-700"
                     >
                         Excluir
                     </button>
                     <button
                         onClick={onClose}
-                        className="rounded bg-gray-500 p-2 text-white"
+                        className="rounded bg-gray-500 p-2 text-white dark:bg-gray-700"
                     >
                         Cancelar
                     </button>

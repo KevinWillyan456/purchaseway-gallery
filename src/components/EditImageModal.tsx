@@ -37,14 +37,16 @@ const EditImageModal: React.FC<EditImageModalProps> = ({
     return (
         <animated.div
             style={modalAnimation}
-            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50"
+            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 dark:bg-opacity-90"
             onClick={onClose}
         >
             <div
-                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200"
+                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
-                <h2 className="mb-4 text-xl font-bold">Editar URL da Imagem</h2>
+                <h2 className="mb-4 text-xl font-bold dark:text-white">
+                    Editar URL da Imagem
+                </h2>
                 <input
                     type="text"
                     value={urlToEdit}
@@ -52,7 +54,7 @@ const EditImageModal: React.FC<EditImageModalProps> = ({
                         setUrlToEdit(e.target.value)
                         validateImageUrl(e.target.value)
                     }}
-                    className="mb-4 w-full border p-2"
+                    className="mb-4 w-full border p-2 dark:bg-gray-700 dark:text-white"
                     placeholder="Digite a nova URL da imagem"
                 />
                 {urlToEdit && isValidImage && (
@@ -73,14 +75,14 @@ const EditImageModal: React.FC<EditImageModalProps> = ({
                 <div className="flex justify-end">
                     <button
                         onClick={handleSave}
-                        className="mr-2 rounded bg-blue-500 p-2 text-white"
+                        className="mr-2 rounded bg-blue-500 p-2 text-white dark:bg-blue-700"
                         disabled={!isValidImage || urlToEdit.trim() === ''}
                     >
                         Salvar
                     </button>
                     <button
                         onClick={onClose}
-                        className="rounded bg-red-500 p-2 text-white"
+                        className="rounded bg-red-500 p-2 text-white dark:bg-red-700"
                     >
                         Cancelar
                     </button>

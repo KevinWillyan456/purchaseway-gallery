@@ -175,26 +175,32 @@ function App() {
 
     return (
         <>
-            <ToastContainer />
+            <ToastContainer
+                theme={
+                    matchMedia('(prefers-color-scheme: dark)').matches
+                        ? 'dark'
+                        : 'light'
+                }
+            />
             <Header />
             <div className="flex flex-col items-center justify-between space-y-2 p-4 sm:flex-row sm:space-x-2 sm:space-y-0">
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="flex w-full items-center justify-center rounded bg-green-500 p-2 text-white sm:w-auto"
+                    className="flex w-full items-center justify-center rounded bg-green-500 p-2 text-white sm:w-auto dark:bg-green-700"
                 >
                     <PlusIcon size={16} className="mr-2" />
                     Adicionar Imagem
                 </button>
                 <button
                     onClick={startSlideshow}
-                    className="flex w-full items-center justify-center rounded bg-purple-500 p-2 text-white sm:w-auto"
+                    className="flex w-full items-center justify-center rounded bg-purple-500 p-2 text-white sm:w-auto dark:bg-purple-700"
                 >
                     <SlidersIcon size={16} className="mr-2" />
                     Iniciar Slideshow
                 </button>
                 <button
                     onClick={() => setIsConfirmDeleteAllOpen(true)}
-                    className="flex w-full items-center justify-center rounded bg-red-500 p-2 text-white sm:w-auto"
+                    className="flex w-full items-center justify-center rounded bg-red-500 p-2 text-white sm:w-auto dark:bg-red-700"
                 >
                     <Trash2Icon size={16} className="mr-2" />
                     Apagar Todas as Imagens
@@ -203,11 +209,11 @@ function App() {
             <div className="mx-auto max-w-screen-xl">
                 <section className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {isLoading ? (
-                        <p className="col-span-full text-center text-gray-500">
+                        <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
                             Carregando imagens...
                         </p>
                     ) : cards.length === 0 ? (
-                        <p className="col-span-full text-center text-gray-500">
+                        <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
                             Nenhuma imagem disponível
                         </p>
                     ) : (

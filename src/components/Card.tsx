@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = ({
         <animated.div
             key={card.id}
             style={style}
-            className="group relative cursor-pointer overflow-hidden rounded-lg bg-white shadow-md"
+            className="group relative cursor-pointer overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800"
             onClick={() => onOpenImage(card.imgUrl)}
         >
             <div className="relative h-48 w-full">
@@ -48,7 +48,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onOpenImage(card.imgUrl)
                     }}
-                    className="rounded bg-blue-500 p-2 text-white"
+                    className="rounded bg-blue-500 p-2 text-white dark:bg-blue-700"
                 >
                     <Maximize2Icon size={16} />
                 </button>
@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onConfirmRemove(card.id)
                     }}
-                    className="rounded bg-red-500 p-2 text-white"
+                    className="rounded bg-red-500 p-2 text-white dark:bg-red-700"
                 >
                     <Trash2Icon size={16} />
                 </button>
@@ -66,7 +66,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onCopyToClipboard(card.imgUrl)
                     }}
-                    className="rounded bg-yellow-500 p-2 text-white"
+                    className="rounded bg-yellow-500 p-2 text-white dark:bg-yellow-700"
                 >
                     <CopyIcon size={16} />
                 </button>
@@ -75,7 +75,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onOpenInNewTab(card.imgUrl)
                     }}
-                    className="rounded bg-purple-500 p-2 text-white"
+                    className="rounded bg-purple-500 p-2 text-white dark:bg-purple-700"
                 >
                     <ExternalLinkIcon size={16} />
                 </button>
@@ -84,7 +84,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onOpenEditModal(card.id, card.imgUrl)
                     }}
-                    className="rounded bg-green-500 p-2 text-white"
+                    className="rounded bg-green-500 p-2 text-white dark:bg-green-700"
                 >
                     <EditIcon size={16} />
                 </button>

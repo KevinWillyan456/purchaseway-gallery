@@ -19,11 +19,11 @@ const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
     return (
         <animated.div
             style={modalAnimation}
-            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-75"
+            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-75 dark:bg-opacity-90"
             onClick={onClose}
         >
             <div
-                className="max-h-4xl relative max-w-4xl scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200"
+                className="max-h-4xl relative max-w-4xl scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
                 <img
@@ -33,7 +33,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
                 />
                 <button
                     onClick={onClose}
-                    className="absolute right-2 top-2 rounded bg-red-500 p-2 text-white"
+                    className="absolute right-2 top-2 rounded bg-red-500 p-2 text-white dark:bg-red-700"
                 >
                     <XIcon size={24} />
                 </button>
