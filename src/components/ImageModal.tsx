@@ -1,6 +1,6 @@
+import { XIcon } from 'lucide-react'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
-import { XIcon } from 'lucide-react'
 
 interface ImageModalProps {
     imageUrl: string
@@ -19,21 +19,21 @@ const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
     return (
         <animated.div
             style={modalAnimation}
-            className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center"
+            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-75"
             onClick={onClose}
         >
             <div
-                className="relative bg-white p-6 rounded shadow-lg transform transition-all duration-200 scale-95 max-w-4xl max-h-4xl"
+                className="max-h-4xl relative max-w-4xl scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200"
                 onClick={(e) => e.stopPropagation()}
             >
                 <img
                     src={imageUrl}
                     alt="Imagem Ampliada"
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                 />
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded"
+                    className="absolute right-2 top-2 rounded bg-red-500 p-2 text-white"
                 >
                     <XIcon size={24} />
                 </button>

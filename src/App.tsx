@@ -124,8 +124,8 @@ function App() {
         if (cardToEdit && isValid && url.trim() !== '') {
             setCards(
                 cards.map((card) =>
-                    card.id === cardToEdit ? { ...card, imgUrl: url } : card
-                )
+                    card.id === cardToEdit ? { ...card, imgUrl: url } : card,
+                ),
             )
             setIsEditModalOpen(false)
             setCardToEdit(null)
@@ -167,7 +167,7 @@ function App() {
         setSlideTransition('opacity-0')
         setTimeout(() => {
             setCurrentSlideIndex(
-                (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
+                (prevIndex) => (prevIndex - 1 + cards.length) % cards.length,
             )
             setSlideTransition('opacity-100')
         }, 300)
@@ -177,31 +177,31 @@ function App() {
         <>
             <ToastContainer />
             <Header />
-            <div className="flex flex-col sm:flex-row justify-between items-center p-4 space-y-2 sm:space-y-0 sm:space-x-2">
+            <div className="flex flex-col items-center justify-between space-y-2 p-4 sm:flex-row sm:space-x-2 sm:space-y-0">
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-500 text-white p-2 rounded flex items-center w-full sm:w-auto justify-center"
+                    className="flex w-full items-center justify-center rounded bg-green-500 p-2 text-white sm:w-auto"
                 >
                     <PlusIcon size={16} className="mr-2" />
                     Adicionar Imagem
                 </button>
                 <button
                     onClick={startSlideshow}
-                    className="bg-purple-500 text-white p-2 rounded flex items-center w-full sm:w-auto justify-center"
+                    className="flex w-full items-center justify-center rounded bg-purple-500 p-2 text-white sm:w-auto"
                 >
                     <SlidersIcon size={16} className="mr-2" />
                     Iniciar Slideshow
                 </button>
                 <button
                     onClick={() => setIsConfirmDeleteAllOpen(true)}
-                    className="bg-red-500 text-white p-2 rounded flex items-center w-full sm:w-auto justify-center"
+                    className="flex w-full items-center justify-center rounded bg-red-500 p-2 text-white sm:w-auto"
                 >
                     <Trash2Icon size={16} className="mr-2" />
                     Apagar Todas as Imagens
                 </button>
             </div>
-            <div className="max-w-screen-xl mx-auto">
-                <section className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="mx-auto max-w-screen-xl">
+                <section className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {isLoading ? (
                         <p className="col-span-full text-center text-gray-500">
                             Carregando imagens...

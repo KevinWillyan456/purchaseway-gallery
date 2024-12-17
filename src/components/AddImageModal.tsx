@@ -34,14 +34,14 @@ const AddImageModal: React.FC<AddImageModalProps> = ({
     return (
         <animated.div
             style={modalAnimation}
-            className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
+            className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50"
             onClick={onClose}
         >
             <div
-                className="bg-white p-6 rounded shadow-lg transform transition-all duration-200 scale-95"
+                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200"
                 onClick={(e) => e.stopPropagation()}
             >
-                <h2 className="text-xl font-bold mb-4">
+                <h2 className="mb-4 text-xl font-bold">
                     Adicionar URL da Imagem
                 </h2>
                 <input
@@ -51,7 +51,7 @@ const AddImageModal: React.FC<AddImageModalProps> = ({
                         setNewImageUrl(e.target.value)
                         validateImageUrl(e.target.value)
                     }}
-                    className="border p-2 w-full mb-4"
+                    className="mb-4 w-full border p-2"
                     placeholder="Digite a URL da imagem"
                 />
                 {newImageUrl && isValidImage && (
@@ -59,7 +59,7 @@ const AddImageModal: React.FC<AddImageModalProps> = ({
                         <img
                             src={newImageUrl}
                             alt="Preview"
-                            className="w-full h-48 object-cover mb-2"
+                            className="mb-2 h-48 w-full object-cover"
                         />
                         <p className="text-green-500">
                             Imagem válida, pronta para salvar
@@ -67,19 +67,19 @@ const AddImageModal: React.FC<AddImageModalProps> = ({
                     </div>
                 )}
                 {!isValidImage && newImageUrl && (
-                    <p className="text-red-500 mb-4">URL da imagem inválida</p>
+                    <p className="mb-4 text-red-500">URL da imagem inválida</p>
                 )}
                 <div className="flex justify-end">
                     <button
                         onClick={handleAddImage}
-                        className="bg-blue-500 text-white p-2 rounded mr-2"
+                        className="mr-2 rounded bg-blue-500 p-2 text-white"
                         disabled={!isValidImage || newImageUrl.trim() === ''}
                     >
                         Adicionar
                     </button>
                     <button
                         onClick={onClose}
-                        className="bg-red-500 text-white p-2 rounded"
+                        className="rounded bg-red-500 p-2 text-white"
                     >
                         Cancelar
                     </button>

@@ -1,11 +1,11 @@
-import React from 'react'
 import {
+    CopyIcon,
+    EditIcon,
+    ExternalLinkIcon,
     Maximize2Icon,
     Trash2Icon,
-    EditIcon,
-    CopyIcon,
-    ExternalLinkIcon,
 } from 'lucide-react'
+import React from 'react'
 import { animated } from 'react-spring'
 import { CardTypes } from '../types'
 
@@ -32,23 +32,23 @@ const Card: React.FC<CardProps> = ({
         <animated.div
             key={card.id}
             style={style}
-            className="relative bg-white shadow-md rounded-lg overflow-hidden group cursor-pointer"
+            className="group relative cursor-pointer overflow-hidden rounded-lg bg-white shadow-md"
             onClick={() => onOpenImage(card.imgUrl)}
         >
-            <div className="relative w-full h-48">
+            <div className="relative h-48 w-full">
                 <img
                     src={card.imgUrl}
                     alt="Imagem"
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                 />
             </div>
-            <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute right-2 top-2 flex space-x-2 opacity-0 transition-opacity group-hover:opacity-100">
                 <button
                     onClick={(e) => {
                         e.stopPropagation()
                         onOpenImage(card.imgUrl)
                     }}
-                    className="bg-blue-500 text-white p-2 rounded"
+                    className="rounded bg-blue-500 p-2 text-white"
                 >
                     <Maximize2Icon size={16} />
                 </button>
@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onConfirmRemove(card.id)
                     }}
-                    className="bg-red-500 text-white p-2 rounded"
+                    className="rounded bg-red-500 p-2 text-white"
                 >
                     <Trash2Icon size={16} />
                 </button>
@@ -66,7 +66,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onCopyToClipboard(card.imgUrl)
                     }}
-                    className="bg-yellow-500 text-white p-2 rounded"
+                    className="rounded bg-yellow-500 p-2 text-white"
                 >
                     <CopyIcon size={16} />
                 </button>
@@ -75,7 +75,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onOpenInNewTab(card.imgUrl)
                     }}
-                    className="bg-purple-500 text-white p-2 rounded"
+                    className="rounded bg-purple-500 p-2 text-white"
                 >
                     <ExternalLinkIcon size={16} />
                 </button>
@@ -84,7 +84,7 @@ const Card: React.FC<CardProps> = ({
                         e.stopPropagation()
                         onOpenEditModal(card.id, card.imgUrl)
                     }}
-                    className="bg-green-500 text-white p-2 rounded"
+                    className="rounded bg-green-500 p-2 text-white"
                 >
                     <EditIcon size={16} />
                 </button>

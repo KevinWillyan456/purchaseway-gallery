@@ -1,5 +1,5 @@
-import React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
+import React from 'react'
 import { CardTypes } from '../types'
 
 interface SlideshowProps {
@@ -24,30 +24,30 @@ const Slideshow: React.FC<SlideshowProps> = ({
     if (!isOpen || cards.length === 0) return null
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
             <button
                 onClick={onClose}
-                className="absolute top-4 right-4 bg-red-500 text-white p-2 rounded z-10"
+                className="absolute right-4 top-4 z-10 rounded bg-red-500 p-2 text-white"
             >
                 <XIcon size={24} />
             </button>
             <button
                 onClick={onPrev}
-                className="absolute left-4 bg-white text-black p-2 rounded z-10"
+                className="absolute left-4 z-10 rounded bg-white p-2 text-black"
             >
                 <ChevronLeftIcon size={24} />
             </button>
-            <div className="text-white absolute top-4 left-1/2 transform -translate-x-1/2 text-xl font-bold bg-black bg-opacity-50 p-2 rounded z-10">
+            <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 transform rounded bg-black bg-opacity-50 p-2 text-xl font-bold text-white">
                 {currentSlideIndex + 1} / {cards.length}
             </div>
             <img
                 src={cards[currentSlideIndex].imgUrl}
                 alt="Slideshow"
-                className={`max-w-full max-h-full transition-opacity duration-300 ${slideTransition}`}
+                className={`max-h-full max-w-full transition-opacity duration-300 ${slideTransition}`}
             />
             <button
                 onClick={onNext}
-                className="absolute right-4 bg-white text-black p-2 rounded z-10"
+                className="absolute right-4 z-10 rounded bg-white p-2 text-black"
             >
                 <ChevronRightIcon size={24} />
             </button>

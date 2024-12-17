@@ -9,7 +9,7 @@ function useCardSprings(cards: CardTypes[]) {
             transform: 'translateY(0)',
             from: { opacity: 0, transform: 'translateY(20px)' },
             delay: index * 100,
-        }))
+        })),
     )
 }
 
