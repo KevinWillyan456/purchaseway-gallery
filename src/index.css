@@ -9,7 +9,11 @@
 }
 
 body {
-    @apply overflow-y-auto bg-[#f3f4f6] dark:bg-[#1a1a1b];
+    @apply flex min-h-screen flex-col overflow-y-auto bg-[#f3f4f6] dark:bg-[#1a1a1b];
+}
+
+main {
+    @apply flex-1;
 }
 
 ::-webkit-scrollbar {

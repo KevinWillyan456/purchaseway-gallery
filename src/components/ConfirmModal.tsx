@@ -16,20 +16,20 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
 }) => {
     const modalAnimation = useSpring({
         opacity: isOpen ? 1 : 0,
-        transform: isOpen ? 'scale(1)' : 'scale(0.95)',
-        config: { duration: 200 },
+        transform: isOpen ? 'translateY(0)' : 'translateY(-20px)',
+        config: { duration: 300 },
     })
 
     if (!isOpen) return null
 
     return (
-        <animated.div
-            style={modalAnimation}
+        <div
             className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 dark:bg-opacity-90"
             onClick={onClose}
         >
-            <div
-                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
+            <animated.div
+                style={modalAnimation}
+                className="rounded bg-white p-6 shadow-lg transition-all duration-300 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
                 <h2 className="mb-4 text-xl font-bold dark:text-white">
@@ -50,8 +50,8 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
                         Cancelar
                     </button>
                 </div>
-            </div>
-        </animated.div>
+            </animated.div>
+        </div>
     )
 }
 

@@ -10,8 +10,9 @@ interface ImageModalProps {
 const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
     const modalAnimation = useSpring({
         opacity: 1,
-        transform: 'scale(1)',
-        config: { duration: 200 },
+        transform: 'translateY(0)',
+        from: { opacity: 0, transform: 'translateY(-20px)' },
+        config: { duration: 300 },
     })
 
     if (!imageUrl) return null
@@ -23,7 +24,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
             onClick={onClose}
         >
             <div
-                className="max-h-4xl relative max-w-4xl scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
+                className="max-h-4xl relative max-w-4xl rounded bg-white p-6 shadow-lg transition-all duration-300 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
                 <img

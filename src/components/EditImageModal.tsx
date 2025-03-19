@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useImageValidation from '../hooks/useImageValidation'
 
@@ -17,18 +17,23 @@ const EditImageModal: React.FC<EditImageModalProps> = ({
 }) => {
     const [urlToEdit, setUrlToEdit] = useState<string>(initialUrl)
     const { isValidImage, validateImageUrl } = useImageValidation()
+    const inputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         setUrlToEdit(initialUrl)
-    }, [initialUrl])
+        if (isOpen) {
+            inputRef.current?.focus()
+        }
+    }, [initialUrl, isOpen])
 
     const modalAnimation = useSpring({
         opacity: isOpen ? 1 : 0,
-        transform: isOpen ? 'scale(1)' : 'scale(0.95)',
-        config: { duration: 200 },
+        transform: isOpen ? 'translateY(0)' : 'translateY(-20px)',
+        config: { duration: 300 },
     })
 
-    const handleSave = () => {
+    const handleSave = (e?: React.FormEvent) => {
+        e?.preventDefault()
         onSave(urlToEdit)
     }
 
@@ -41,52 +46,58 @@ const EditImageModal: React.FC<EditImageModalProps> = ({
             onClick={onClose}
         >
             <div
-                className="scale-95 transform rounded bg-white p-6 shadow-lg transition-all duration-200 dark:bg-gray-800"
+                className="rounded bg-white p-6 shadow-lg transition-all duration-300 dark:bg-gray-800"
                 onClick={(e) => e.stopPropagation()}
             >
                 <h2 className="mb-4 text-xl font-bold dark:text-white">
                     Editar URL da Imagem
                 </h2>
-                <input
-                    type="text"
-                    value={urlToEdit}
-                    onChange={(e) => {
-                        setUrlToEdit(e.target.value)
-                        validateImageUrl(e.target.value)
-                    }}
-                    className="mb-4 w-full border p-2 dark:bg-gray-700 dark:text-white"
-                    placeholder="Digite a nova URL da imagem"
-                />
-                {urlToEdit && isValidImage && (
-                    <div className="mb-4">
-                        <img
-                            src={urlToEdit}
-                            alt="Preview"
-                            className="mb-2 h-48 w-full object-cover"
-                        />
-                        <p className="text-green-500">
-                            Imagem válida, pronta para salvar
+                <form onSubmit={handleSave}>
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        value={urlToEdit}
+                        onChange={(e) => {
+                            setUrlToEdit(e.target.value)
+                            validateImageUrl(e.target.value)
+                        }}
+                        className="mb-4 w-full border p-2 dark:bg-gray-700 dark:text-white"
+                        placeholder="Digite a nova URL da imagem"
+                    />
+                    {urlToEdit && isValidImage && (
+                        <div className="mb-4">
+                            <img
+                                src={urlToEdit}
+                                alt="Preview"
+                                className="mb-2 h-48 w-full object-cover"
+                            />
+                            <p className="text-green-500">
+                                Imagem válida, pronta para salvar
+                            </p>
+                        </div>
+                    )}
+                    {!isValidImage && urlToEdit && (
+                        <p className="mb-4 text-red-500">
+                            URL da imagem inválida
                         </p>
+                    )}
+                    <div className="flex justify-end">
+                        <button
+                            type="submit"
+                            className="mr-2 rounded bg-blue-500 p-2 text-white dark:bg-blue-700"
+                            disabled={!isValidImage || urlToEdit.trim() === ''}
+                        >
+                            Salvar
+                        </button>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="rounded bg-red-500 p-2 text-white dark:bg-red-700"
+                        >
+                            Cancelar
+                        </button>
                     </div>
-                )}
-                {!isValidImage && urlToEdit && (
-                    <p className="mb-4 text-red-500">URL da imagem inválida</p>
-                )}
-                <div className="flex justify-end">
-                    <button
-                        onClick={handleSave}
-                        className="mr-2 rounded bg-blue-500 p-2 text-white dark:bg-blue-700"
-                        disabled={!isValidImage || urlToEdit.trim() === ''}
-                    >
-                        Salvar
-                    </button>
-                    <button
-                        onClick={onClose}
-                        className="rounded bg-red-500 p-2 text-white dark:bg-red-700"
-                    >
-                        Cancelar
-                    </button>
-                </div>
+                </form>
             </div>
         </animated.div>
     )

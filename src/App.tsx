@@ -13,6 +13,7 @@ import AddImageModal from './components/AddImageModal'
 import Card from './components/Card'
 import ConfirmModal from './components/ConfirmModal'
 import EditImageModal from './components/EditImageModal'
+import Footer from './components/Footer'
 import ImageModal from './components/ImageModal'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import Slideshow from './components/Slideshow'
@@ -183,83 +184,84 @@ function App() {
                 }
             />
             <Header />
-            <div className="flex flex-col items-center justify-between space-y-2 p-4 sm:flex-row sm:space-x-2 sm:space-y-0">
-                <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="flex w-full items-center justify-center rounded bg-green-500 p-2 text-white sm:w-auto dark:bg-green-700"
-                >
-                    <PlusIcon size={16} className="mr-2" />
-                    Adicionar Imagem
-                </button>
-                <button
-                    onClick={startSlideshow}
-                    className="flex w-full items-center justify-center rounded bg-purple-500 p-2 text-white sm:w-auto dark:bg-purple-700"
-                >
-                    <SlidersIcon size={16} className="mr-2" />
-                    Iniciar Slideshow
-                </button>
-                <button
-                    onClick={() => setIsConfirmDeleteAllOpen(true)}
-                    className="flex w-full items-center justify-center rounded bg-red-500 p-2 text-white sm:w-auto dark:bg-red-700"
-                >
-                    <Trash2Icon size={16} className="mr-2" />
-                    Apagar Todas as Imagens
-                </button>
-            </div>
-            <div className="mx-auto max-w-screen-xl">
-                <section className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    {isLoading ? (
-                        <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
-                            Carregando imagens...
-                        </p>
-                    ) : cards.length === 0 ? (
-                        <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
-                            Nenhuma imagem disponível
-                        </p>
-                    ) : (
-                        cards.map((card, index) => {
-                            const props = springs[index]
-                            return (
-                                <Card
-                                    key={card.id}
-                                    card={card}
-                                    style={
-                                        props as unknown as React.CSSProperties
-                                    }
-                                    onOpenImage={openImage}
-                                    onConfirmRemove={confirmRemoveCard}
-                                    onCopyToClipboard={copyToClipboard}
-                                    onOpenInNewTab={openInNewTab}
-                                    onOpenEditModal={openEditModal}
-                                />
-                            )
-                        })
-                    )}
-                </section>
-            </div>
-            {isModalOpen && (
-                <AddImageModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    onAddImage={handleAddImage}
-                    validateImageUrl={validateImageUrl}
-                    isValidImage={isValidImage}
-                />
-            )}
-            {isConfirmOpen && (
-                <ConfirmModal
-                    isOpen={isConfirmOpen}
-                    onClose={() => setIsConfirmOpen(false)}
-                    onConfirm={removeCard}
-                />
-            )}
-            {isConfirmDeleteAllOpen && (
-                <ConfirmModal
-                    isOpen={isConfirmDeleteAllOpen}
-                    onClose={() => setIsConfirmDeleteAllOpen(false)}
-                    onConfirm={removeAllCards}
-                />
-            )}
+            <main className="mb-20">
+                <div className="flex flex-col items-center justify-between space-y-2 p-4 sm:flex-row sm:space-x-2 sm:space-y-0">
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="flex w-full items-center justify-center rounded bg-green-500 p-2 text-white sm:w-auto dark:bg-green-700"
+                    >
+                        <PlusIcon size={16} className="mr-2" />
+                        Adicionar Imagem
+                    </button>
+                    <button
+                        onClick={startSlideshow}
+                        className="flex w-full items-center justify-center rounded bg-purple-500 p-2 text-white sm:w-auto dark:bg-purple-700"
+                    >
+                        <SlidersIcon size={16} className="mr-2" />
+                        Iniciar Slideshow
+                    </button>
+                    <button
+                        onClick={() => setIsConfirmDeleteAllOpen(true)}
+                        className="flex w-full items-center justify-center rounded bg-red-500 p-2 text-white sm:w-auto dark:bg-red-700"
+                    >
+                        <Trash2Icon size={16} className="mr-2" />
+                        Apagar Todas as Imagens
+                    </button>
+                </div>
+                <div className="mx-auto max-w-screen-xl">
+                    <section className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {isLoading ? (
+                            <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
+                                Carregando imagens...
+                            </p>
+                        ) : cards.length === 0 ? (
+                            <p className="col-span-full text-center text-gray-500 dark:text-gray-300">
+                                Nenhuma imagem disponível
+                            </p>
+                        ) : (
+                            cards.map((card, index) => {
+                                const props = springs[index]
+                                return (
+                                    <Card
+                                        key={card.id}
+                                        card={card}
+                                        style={
+                                            props as unknown as React.CSSProperties
+                                        }
+                                        onOpenImage={openImage}
+                                        onConfirmRemove={confirmRemoveCard}
+                                        onCopyToClipboard={copyToClipboard}
+                                        onOpenInNewTab={openInNewTab}
+                                        onOpenEditModal={openEditModal}
+                                    />
+                                )
+                            })
+                        )}
+                    </section>
+                </div>
+            </main>
+
+            <AddImageModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onAddImage={handleAddImage}
+                validateImageUrl={validateImageUrl}
+                isValidImage={isValidImage}
+            />
+
+            <ConfirmModal
+                isOpen={isConfirmOpen}
+                onClose={() => setIsConfirmOpen(false)}
+                onConfirm={removeCard}
+            />
+
+            <ConfirmModal
+                isOpen={isConfirmDeleteAllOpen}
+                onClose={() => setIsConfirmDeleteAllOpen(false)}
+                onConfirm={removeAllCards}
+                message="Tem certeza de que deseja apagar todas as imagens?"
+            />
+
             {isImageOpen && imageToOpen && (
                 <ImageModal
                     imageUrl={imageToOpen}
@@ -274,7 +276,9 @@ function App() {
                     initialUrl={urlToEdit || ''}
                 />
             )}
+
             <ScrollToTopButton show={showScrollToTop} onClick={scrollToTop} />
+
             <Slideshow
                 isOpen={isSlideshowOpen}
                 cards={cards}
@@ -284,6 +288,8 @@ function App() {
                 onNext={nextSlide}
                 onPrev={prevSlide}
             />
+
+            <Footer />
         </>
     )
 }

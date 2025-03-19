@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { animated, useSpring } from 'react-spring'
 import { CardTypes } from '../types'
 
 interface SlideshowProps {
@@ -21,10 +22,34 @@ const Slideshow: React.FC<SlideshowProps> = ({
     onNext,
     onPrev,
 }) => {
+    const modalAnimation = useSpring({
+        opacity: isOpen ? 1 : 0,
+        transform: isOpen ? 'translateY(0)' : 'translateY(-20px)',
+        config: { duration: 300 },
+    })
+
+    useEffect(() => {
+        if (!isOpen) return
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'ArrowRight') {
+                onNext()
+            } else if (event.key === 'ArrowLeft') {
+                onPrev()
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [isOpen, onNext, onPrev])
+
     if (!isOpen || cards.length === 0) return null
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 dark:bg-opacity-90">
+        <animated.div
+            style={modalAnimation}
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 dark:bg-opacity-90"
+        >
             <button
                 onClick={onClose}
                 className="absolute right-4 top-4 z-10 rounded bg-red-500 p-2 text-white dark:bg-red-700"
@@ -51,7 +76,7 @@ const Slideshow: React.FC<SlideshowProps> = ({
             >
                 <ChevronRightIcon size={24} />
             </button>
-        </div>
+        </animated.div>
     )
 }
 
